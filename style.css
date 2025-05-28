@@ -1,0 +1,365 @@
+/* Reset básico */
+body {
+    background-color: #1d1f25;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+/* Navbar */
+
+.custom-navbar {
+    background-color: #0066ff;
+    /* tom de azul vibrante */
+}
+
+.navbar-title {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 600;
+    margin: 0 8px;
+}
+
+.search-form input {
+    width: 180px;
+    max-width: 250px;
+
+}
+
+.search.txt {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    color: rgba(255, 255, 255);
+}
+
+.buttom {
+    margin: 0;
+    height: 40vh;
+    width: 40vh;
+    background: (rgb(18, 64, 146));
+}
+
+.navbar {
+    background-color: #0052cc;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #aeeaff;
+}
+
+/* Container principal */
+.container {
+    margin-top: 20px;
+}
+
+/* Seção de destaques */
+.card-anime {
+    background-color: #2a2d36;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+}
+
+.card-anime:hover {
+    transform: scale(1.03);
+}
+
+.card-anime img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+/* Últimos lançamentos */
+#lancamentos .card {
+    background-color: #2a2d36;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+#lancamentos .card:hover {
+    transform: scale(1.02);
+}
+
+/* Top Animes */
+#top-animes {
+    background-color: #2a2d36;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+#top-animes h5 {
+    color: #00aaff;
+    font-weight: bold;
+    border-bottom: 1px solid #00aaff;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+#top-animes ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#top-animes li {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+#top-animes li i {
+    color: gold;
+    margin-right: 6px;
+}
+
+.footer {
+    background: linear-gradient(to top, #000000, #1c1c1c);
+    border-top: 1px solid #333;
+}
+
+.footer h5 {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #top-animes {
+        margin-top: 40px;
+    }
+}
+
+/*.slider{
+    margin: 0 auto;
+    width: 800px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.slides{
+    width: 400%;
+    height: 400px;
+    display: flex;
+}
+
+.slides input{
+    display: none;
+}
+
+.slide{
+    width: 25%;
+    position: relative;
+}
+
+.slide img{
+    width: 800px;
+}
+
+.manual-navigation{
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn{
+    border: 2px solid #fff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.manual-btn :not(:last-child){
+    margin-right: 40px;
+}
+
+.manual-btn:hover{
+    background-color: #fff;
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+    margin-left: -25%
+
+}
+
+#radio3:checked ~ .first{
+    margin-left: -50;
+}
+
+#radio4:checked ~ .first{
+    margin-left: -75%;
+}
+
+#radio5:checked ~ .first{
+    margin-left: -100%;
+}
+
+#radio6:checked ~ .first{
+    margin-left: -125%;
+}
+
+
+.navigation-auto div{
+    border: 2px solid #0066ff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.navigation-auto{
+    position: absolute  ;
+    width: 800px;
+    margin-top: 360px;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-auto div:not(:last-child){
+    margin-top: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+    background-color: #1d1f25;
+}
+#radio1:checked ~ .navigation-auto .auto-btn2{
+    background-color: #1d1f25;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn3{
+    background-color: #1d1f25;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn4{
+    background-color: #1d1f25;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn5{
+    background-color: ##1d1f25;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn6{
+    background-color: #1d1f25;
+}*/
+
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: none;
+    text-align: center;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button.prev,
+button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+/*API TMDB*/
+
+.carousel-item{
+    display: flex;
+}
+
+.carousel-item>div{
+    flex: 1 0 0%;
+    padding: 5px;
+}
+
+.anime-card img{
+    width: 100%;
+    border-radius: 8px;
+}
+
+.anime-title{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #fff;
+}
+
+
