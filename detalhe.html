@@ -1,106 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY ANIMES - Detalhes</title>
-     <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="detalhe.css">
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MY FILMES - Detalhes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="detalhe.css" />
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sentai Daishikkaku 2</title>
-  <link rel="stylesheet" href="detalhe.css">
-</head>
-<body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<body class="bg-dark text-white">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="#">MY ANIMES</a>
-      <a class="navbar-brand" href="#">
-        <img src="images/logo.webp" alt="Logo" height="40">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.webp" alt="Logo" height="40" />
       </a>
-      
+      <a class="navbar-brand" href="index.html">MY FILMES</a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <img src="images/LUPA.png">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link text-white" href="#">INÍCIO</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">LEGENDADO</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">DUBLADO</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">FAVORITOS</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">LANÇAMENTOS</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">MAIS ASSISTIDOS</a>  
-        </ul>
 
-      
-        
-        <form class="d-flex search-form" role="search">
-          <input class="form-control me-2" type="search" placeholder="Pesquisar ..." aria-label="Search">
-         
-          <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i>
-            <a href="#">
-                <img src="images/loupe (1).png" alt="Lupa" height="20" width="20">
-              </a></button>
-        </form>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link text-white" href="index.html">INÍCIO</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">LANÇAMENTOS</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">MAIS VISTOS</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">FAVORITOS</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">GENÊROS</a></li>
+        </ul>
       </div>
     </div>
   </nav>
-  <header>
-    <h1>Venom : A última Dança</h1>
-    <p class="ano">Ano: 2024</p>
-     <img src="images/venon.webp" class="img-fluid rounded">
-  </header>
 
-  <main>
-    <section class="detalhes">
-      <p><strong>Gênero:</strong> Ação, Aventura, Ficção científica, Suspense</p>
-      <p><strong>Estúdio:</strong> Columbia Pictures; Marcel Hardy; Marvel Entertainment; </p>
-      <p><strong>Diretor:</strong> Kelly Marcel</p>
-      <p><strong>Status:</strong> Completo</p>
-    </section>
+  <!-- Conteúdo -->
+  <main class="container py-4">
+    <div id="mensagem" class="text-center text-warning mb-3"></div>
 
-    <section class="descricao">
-      <p><strong>Em Venom: A Última Rodada, Tom Hardy retorna como Venom, um dos maiores e mais complexos personagens da Marvel, para o filme final da trilogia. Eddie e Venom estão em fuga. Caçados por seus dois mundos e com o cerco se fechando, a dupla é forçada a tomar uma decisão devastadora que fechará as cortinas para a última dança de Venom e Eddie.Venom: A Última Rodada é estrelado por Tom Hardy,...</p>
-    </section>
+    <header class="mb-4">
+      <h1 id="filmeTitle"></h1>
+      <p class="ano" id="filmeYear"></p>
+    </header>
 
-     <div id="Venom : A última Rodada" class="card-container">
-         <img src="images/venon.webp" class="img-fluid rounded">
-    <div class="card" onclick="window.location.href='Venom : A Última Rodada.html'">
-      
-      <div class="card-text">
-        <h4>Venom: A Última Rodada</h4>
-        <p>Filme/HD</p>
+    <div class="row align-items-start">
+      <div class="col-md-4 text-center mb-3 mb-md-0">
+        <img id="imagem" src="" alt="Capa do Filme" class="img-fluid rounded" style="max-height: 500px;" />
+      </div>
+      <div class="col-md-8">
+        <section class="descricao mb-3">
+          <p id="filmeDescription"></p>
+        </section>
+
+        <section class="assistir">
+          <button id="watchTrailerBtn" class="btn btn-primary" style="display: none;">Assistir Trailer</button>
+        </section>
       </div>
     </div>
+  </main>
 
-    <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.card-container').forEach(el => el.classList.add('hidden'));
-      document.getElementById(tabId).classList.remove('hidden');
-
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-      event.target.classList.add('active');
-    }
-  </script>
-
-  <footer class="footer bg-dark text-light text-center py-4">
-    <div class="container">
-      <h5 class="mb-2">MY ANIMES</h5>
-      <p class="mb-0">© MY ANIMES 2025 - Todos os direitos reservados</p>
-    </div>
+  <footer class="footer text-center p-4 mt-4">
+    <h5>MY FILMES</h5>
+    <p>&copy; 2025 - Todos os direitos reservados</p>
   </footer>
-   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="detalhe.js"></script>
+  <script src="TMDB.js"></script>
 </body>
+
 </html>

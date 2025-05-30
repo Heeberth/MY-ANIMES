@@ -2,106 +2,64 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MY ANIMES - Pesquisa</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="pesquisa.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="pesquisa.css" />
 </head>
 
 <body class="bg-dark text-white">
-
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="#">MY ANIMES</a>
-      <a class="navbar-brand" href="#">
-        <img src="images/logo.webp" alt="Logo" height="40">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.webp" alt="Logo" height="40" />
       </a>
+      <a class="navbar-brand" href="index.html">MY ANIMES</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <img src="images/LUPA.png">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link text-white" href="#">INÍCIO</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="index.html">INÍCIO</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">LEGENDADO</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">DUBLADO</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">FAVORITOS</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">LANÇAMENTOS</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">MAIS ASSISTIDOS</a>
+          <li class="nav-item"><a class="nav-link text-white" href="#">MAIS ASSISTIDOS</a></li>
         </ul>
 
-        <form class="d-flex search-form" role="search">
-          <input class="form-control me-2" type="search" placeholder="Pesquisar ..." aria-label="Search">
-
-          <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i>
-            <a href="#">
-              <img src="images/loupe (1).png" alt="Lupa" height="20" width="20">
-            </a></button>
+        <form id="searchForm" class="d-flex" role="search" onsubmit="return false;">
+          <input id="searchInput" class="form-control me-2" type="search" placeholder="Pesquisar ..."
+            aria-label="Search" />
+          <button class="btn btn-outline-light" type="submit">
+            <img src="images/loupe (1).png" alt="Pesquisar" height="20" width="20" />
+          </button>
         </form>
       </div>
     </div>
   </nav>
 
-  <div class="search-title">Resultado para a pesquisa: <span id="searchTerm">Todos</span></div>
-  <div class="anime-grid" id="animeGrid">
-    <!-- Animes vão aparecer aqui -->
-  </div>
+  <!-- Conteúdo -->
+  <main class="container py-4">
+    <h2 class="mb-4">Filmes Disponíveis</h2>
 
-  <script>
-    const animes = [
-      { title: "Boruto Naruto Next Generations", image: "https://i.imgur.com/fake1.jpg" },
-      { title: "Naruto Shippuden Dublado", image: "https://i.imgur.com/fake2.jpg" },
-      { title: "Naruto Shippuden Portugal", image: "https://i.imgur.com/fake3.jpg" },
-      { title: "Naruto SD: Rock Lee", image: "https://i.imgur.com/fake4.jpg" },
-      { title: "Naruto Clássico Legendado", image: "https://i.imgur.com/fake5.jpg" },
-      { title: "Naruto Shippuden", image: "https://i.imgur.com/fake6.jpg" },
-      { title: "D4DJ All Mix", image: "https://i.imgur.com/fake7.jpg" }
-    ];
-
-    function displayAnimes(filtered = animes) {
-      const container = document.getElementById('animeGrid');
-      container.innerHTML = '';
-      filtered.forEach(anime => {
-        const card = document.createElement('div');
-        card.className = 'anime-card';
-        card.innerHTML = `
-          <img src="${anime.image}" alt="${anime.title}">
-          <p>${anime.title}</p>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function search(event) {
-      if (event.key === 'Enter') {
-        const term = event.target.value.toLowerCase();
-        document.getElementById('searchTerm').textContent = term || "Todos";
-        const filtered = animes.filter(a => a.title.toLowerCase().includes(term));
-        displayAnimes(filtered);
-      }
-    }
-
-    // Mostra todos ao carregar
-    window.onload = () => displayAnimes();
-  </script>
-
-
-  <footer class="footer bg-dark text-light text-center py-4">
-    <div class="container">
-      <h5 class="mb-2">MY ANIMES</h5>
-      <p class="mb-0">© MY ANIMES 2025 - Todos os direitos reservados</p>
+    <div id="filmeGrid" class="filme-grid">
+      <!-- Os cards dos animes vão ser inseridos por JS -->
     </div>
+  </main>
+
+  <footer class="footer text-center p-4 mt-4">
+    <h5>MY ANIMES</h5>
+    <p>&copy; 2025 - Todos os direitos reservados</p>
   </footer>
 
-
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
-
+  <script src="pesquisa.js"></script>
+  <script src="TMDB.js"></script>
 </body>
 
 </html>

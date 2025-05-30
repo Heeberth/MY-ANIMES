@@ -1,20 +1,74 @@
+/* Estilos gerais para todo o site */
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #0d1117;
-  color: #e0e0e0;
+  background-color: #1e1e1e;
+  color: #fff;
   margin: 0;
   padding: 0;
 }
 
+.navbar {
+  background-color: #0052cc;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.navbar-nav .nav-link {
+  color: #fff;
+  font-weight: 500;
+  margin-right: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #aeeaff;
+}
+
+.footer {
+  background: linear-gradient(to top, #000, #1c1c1c);
+  border-top: 1px solid #333;
+  color: #ccc;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.footer h5 {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Responsividade geral */
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin-bottom: 1rem;
+  }
+}
+
+
+/* Estilos exclusivos da página de detalhes */
+
+body {
+  background-color: #1e1e1e;
+}
+
 header {
-  background-color: #1f2937;
+  background-color: #0049c6;
   padding: 20px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 header h1 {
-  margin: 0;
   font-size: 2em;
+  margin-bottom: 0.2em;
 }
 
 header .ano {
@@ -22,11 +76,6 @@ header .ano {
   color: #a1a1aa;
 }
 
-main {
-  padding: 20px;
-}
-
-.detalhes p,
 .descricao p,
 .episodios label {
   margin-bottom: 10px;
@@ -38,31 +87,23 @@ main {
   font-size: 1em;
   width: 100%;
   max-width: 300px;
-  margin-top: 5px;
   background-color: #2c2f33;
   border: none;
   border-radius: 5px;
   color: #fff;
 }
 
-.footer {
-    background: linear-gradient(to top, #000000, #1c1c1c);
-    border-top: 1px solid #333;
-  }
-  
-  .footer h5 {
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  
-  .footer p {
-    font-size: 0.9rem;
-    color: #ccc;
-  }
-  
-  /* Responsividade */
+.episodios button {
+  margin-top: 10px;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    #top-animes {
-        margin-top: 40px;
-    }
+  header {
+    padding: 15px;
+  }
+
+  .episodios input {
+    max-width: 100%;
+  }
 }

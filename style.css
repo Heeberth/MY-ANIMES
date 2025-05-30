@@ -78,7 +78,7 @@ a:hover {
 }
 
 /* Seção de destaques */
-.card-anime {
+.card-filme {
     background-color: #2a2d36;
     border: none;
     border-radius: 8px;
@@ -86,11 +86,11 @@ a:hover {
     overflow: hidden;
 }
 
-.card-anime:hover {
+.card-filme:hover {
     transform: scale(1.03);
 }
 
-.card-anime img {
+.card-filme img {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -114,14 +114,14 @@ a:hover {
 }
 
 /* Top Animes */
-#top-animes {
+#top-filmes {
     background-color: #2a2d36;
     border-radius: 8px;
     padding: 15px;
     margin-top: 20px;
 }
 
-#top-animes h5 {
+#top-filmes h5 {
     color: #00aaff;
     font-weight: bold;
     border-bottom: 1px solid #00aaff;
@@ -129,17 +129,17 @@ a:hover {
     margin-bottom: 12px;
 }
 
-#top-animes ul {
+#top-filmes ul {
     list-style: none;
     padding-left: 0;
 }
 
-#top-animes li {
+#top-filmes li {
     margin-bottom: 8px;
     font-size: 15px;
 }
 
-#top-animes li i {
+#top-filmes li i {
     color: gold;
     margin-right: 6px;
 }
@@ -162,7 +162,7 @@ a:hover {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    #top-animes {
+    #top-filmes {
         margin-top: 40px;
     }
 }
@@ -341,25 +341,23 @@ button.next {
 
 /*API TMDB*/
 
-.carousel-item{
+.carousel-item {
     display: flex;
 }
 
-.carousel-item>div{
+.carousel-item>div {
     flex: 1 0 0%;
     padding: 5px;
 }
 
-.anime-card img{
+.filme-card img {
     width: 100%;
     border-radius: 8px;
 }
 
-.anime-title{
+.filme-title {
     text-align: center;
     margin-top: 5px;
     font-size: 14px;
     color: #fff;
 }
-
-

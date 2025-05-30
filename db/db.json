@@ -1,46 +1,22 @@
 {
-  "usuarios": [
-    {
-      "id": "5776",
-      "nome": "heberth",
-      "email": "knsjwjdbvhjwd@gmail.com",
-      "senha": "1234"
-    },
-    {
-      "id": "8420",
-      "nome": "MARRETA",
-      "email": "mARRETA@GMAIL.COM",
-      "senha": "123"
-    },
-    {
-      "id": "3a42",
-      "nome": "MARRETA",
-      "email": "mARRETA@GMAIL.COM",
-      "senha": "123"
-    },
-    {
-      "id": "1ff1",
-      "nome": "heberth",
-      "email": "mARRETA@GMAIL.COM",
-      "senha": "123"
-    },
-    {
-      "id": "d8be",
-      "nome": "heberth",
-      "email": "mARRETA@GMAIL.COM",
-      "senha": "123"
-    },
-    {
-      "id": "9805",
-      "nome": "a",
-      "email": "mARRETA@GMAIL.COM",
-      "senha": "123"
-    },
-    {
-      "id": "bd27",
-      "nome": "MATHUES",
-      "email": "mARRETA@GMAIL.COM",
-      "senha": "123"
-    }
-  ]
+  "usuarios": [],
+  "aluno": {
+    "nome": "Heberth Augusto",
+    "bio": "Estudante de ANÁLISE E DESENVOLVIMENTO DE SISTEMAS.",
+    "foto": "images/202442474.png",
+    "redesSociais": [
+      {
+        "nome": "LinkedIn",
+        "url": "#"
+      },
+      {
+        "nome": "GitHub",
+        "url": "https://github.com/Heeberth"
+      },
+      {
+        "nome": "Instagram",
+        "url": "https://www.instagram.com/heberth_sousa/"
+      }
+    ]
+  }
 }
