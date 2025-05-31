@@ -123,9 +123,9 @@ fetch(url)
   .catch(error => console.error('Erro ao buscar Filmes:', error));
 
 
-  // parte autor
+// parte autor
 
-  //link do Instagram dinamicamente
+//link do Instagram dinamicamente
 const redes = document.getElementById('redesSociaisAluno');
 const instagramUrl = 'https://instagram.com/heberth_sousa';
 
@@ -134,3 +134,60 @@ redes.innerHTML = `
     <i class="fab fa-instagram"></i>
   </a>
 `;
+
+
+// Agrupar avaliações por ano a partir da API TMDB
+async function gerarGraficoNotasPorAno() {
+  try {
+    const filmes = await buscarFilmes(url);
+
+    const notasPorAno = {};
+
+    filmes.forEach(filme => {
+      const ano = new Date(filme.release_date).getFullYear();
+      const nota = filme.vote_average;
+
+      if (!notasPorAno[ano]) {
+        notasPorAno[ano] = { soma: 0, total: 0 };
+      }
+
+      notasPorAno[ano].soma += nota;
+      notasPorAno[ano].total += 1;
+    });
+
+    const anos = Object.keys(notasPorAno).sort();
+    const medias = anos.map(ano => (notasPorAno[ano].soma / notasPorAno[ano].total).toFixed(2));
+
+    // Criar gráfico
+    const ctx = document.getElementById('graficoNotas').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: anos,
+        datasets: [{
+          label: 'Nota Média',
+          data: medias,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 10
+          }
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Erro ao gerar gráfico de notas por ano:', error);
+  }
+}
+
+// Chamar função após carregar a página
+window.addEventListener('load', () => {
+  gerarGraficoNotasPorAno();
+});
