@@ -2,8 +2,9 @@ const TMDB_API_KEY = '2c636bf15fffecab0a02a33f3d068656';
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
 
-async function buscarAnimes(query) {
-  const url = `${TMDB_BASE_URL}/search/tv?api_key=${TMDB_API_KEY}&language=pt-BR&query=${encodeURIComponent(query)}`;
+async function buscarFilmes(query) {
+  const url = `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&language=pt-BR&query=${encodeURIComponent(query)}`;
+
 
   try {
     const res = await fetch(url);

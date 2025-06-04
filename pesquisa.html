@@ -13,12 +13,13 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
         <img src="images/logo.webp" alt="Logo" height="40" />
+        <span class="ms-2">MY ANIMES</span>
       </a>
-      <a class="navbar-brand" href="index.html">MY ANIMES</a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar menu de navegação">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -27,16 +28,16 @@
           <li class="nav-item"><a class="nav-link text-white" href="index.html">INÍCIO</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">LEGENDADO</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">DUBLADO</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">FAVORITOS</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="favoritos.html">FAVORITOS</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">LANÇAMENTOS</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">MAIS ASSISTIDOS</a></li>
         </ul>
 
-        <form id="searchForm" class="d-flex" role="search" onsubmit="return false;">
+        <form id="searchForm" class="d-flex search-form" role="search" aria-label="Formulário de busca">
           <input id="searchInput" class="form-control me-2" type="search" placeholder="Pesquisar ..."
-            aria-label="Search" />
-          <button class="btn btn-outline-light" type="submit">
-            <img src="images/loupe (1).png" alt="Pesquisar" height="20" width="20" />
+            aria-label="Pesquisar filmes" required />
+          <button class="btn btn-outline-light" type="submit" aria-label="Pesquisar">
+            <img src="images/loupe (1).png" alt="" height="20" width="20" />
           </button>
         </form>
       </div>
@@ -48,7 +49,7 @@
     <h2 class="mb-4">Filmes Disponíveis</h2>
 
     <div id="filmeGrid" class="filme-grid">
-      <!-- Os cards dos animes vão ser inseridos por JS -->
+      <!-- Os cards dos animes serão inseridos via JS -->
     </div>
   </main>
 
@@ -57,9 +58,11 @@
     <p>&copy; 2025 - Todos os direitos reservados</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="pesquisa.js"></script>
-  <script src="TMDB.js"></script>
+  <!-- Scripts: TMDB.js antes do pesquisa.js -->
+ <script src="TMDB.js"></script>
+<script src="pesquisa.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
