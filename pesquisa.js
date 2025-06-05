@@ -1,90 +1,84 @@
-// script-base.js
-
-// Exemplo: Toggle navbar menu no mobile
 document.addEventListener('DOMContentLoaded', () => {
-  const toggler = document.querySelector('.navbar-toggler');
-  const collapse = document.querySelector('#navbarNav');
+  const searchForm = document.querySelector('.search-form');
+  const searchInput = searchForm?.querySelector('input[type="search"]');
+  const filmeGrid = document.querySelector('.filme-grid');
+  const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500'; // para usar a mesma base do TMDB.js
 
-  if (toggler && collapse) {
-    toggler.addEventListener('click', () => {
-      collapse.classList.toggle('show');
-    });
+
+  const apiKey = '2c636bf15fffecab0a02a33f3d068656';
+
+  async function buscarFilmes(query) {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=pt-BR&query=${encodeURIComponent(query)}`;
+    const resposta = await fetch(url);
+    const dados = await resposta.json();
+    return dados.results;
   }
-});
 
-// script-pesquisa.js
 
-document.addEventListener('DOMContentLoaded', () => {
-  const searchForm = document.querySelector('.search-form');
-  const searchInput = searchForm.querySelector('input[type="search"]');
 
-  searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  async function executarBusca(query) {
+    if (!query) return;
 
-    const query = searchInput.value.trim();
-
-    if (!query) {
-      alert('Por favor, digite um termo para pesquisar.');
-      return;
+    if (filmeGrid) {
+      filmeGrid.innerHTML = '<p>Carregando...</p>';
     }
 
-    // Aqui você pode adicionar sua lógica de busca, por exemplo:
-    // - chamar API
-    // - filtrar elementos na página
-    // - redirecionar para outra página
+    try {
+      const resultados = await buscarFilmes(query);
 
-    console.log(`Pesquisar por: ${query}`);
+      if (!filmeGrid) return;
 
-    // Exemplo: redirecionar para uma página de resultados
-    // window.location.href = `resultados.html?query=${encodeURIComponent(query)}`;
-  });
-});
+      if (resultados.length === 0) {
+        filmeGrid.innerHTML = '<p>Nenhum filme encontrado.</p>';
+        return;
+      }
 
-// Importante: Certifique-se de importar tmdb.js antes deste script
+      filmeGrid.innerHTML = resultados.map(item => {
+        const imgSrc = item.poster_path
+          ? `${TMDB_IMAGE_BASE}${item.poster_path}`
+          : 'https://via.placeholder.com/300x160?text=Sem+Imagem';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const searchForm = document.querySelector('.search-form');
-  const searchInput = searchForm.querySelector('input[type="search"]');
-  const animeGrid = document.querySelector('.anime-grid');
+        const title = item.title || 'Sem título';
 
-  searchForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const query = searchInput.value.trim();
-    if (!query) {
-      alert('Digite um termo para pesquisar.');
-      return;
-    }
-
-    // Limpar resultados antigos
-    filmeGrid.innerHTML = '<p>Carregando...</p>';
-
-    // Buscar animes na TMDb
-    const resultados = await buscarFilmes(query);
-
-    if (resultados.length === 0) {
-      filmeGrid.innerHTML = '<p>Nenhum anime encontrado.</p>';
-      return;
-    }
-
-    // Montar cards
-    filmeGrid.innerHTML = resultados.map(item => {
-      const imgSrc = item.poster_path ? `${TMDB_IMAGE_BASE}${item.poster_path}` : 'images/default-poster.png';
-
-      return `
-          <div class="filme-card" data-id="${item.id}">
-            <img src="${imgSrc}" alt="${item.name}" />
-            <p>${item.name}</p>
+        return `
+          <div class="filme-card" data-id="${item.id}" style="cursor:pointer;">
+            <img src="${imgSrc}" alt="${title}" class="img-fluid rounded" />
+            <p>${title}</p>
           </div>
         `;
-    }).join('');
+      }).join('');
 
-    // Adicionar evento click para ir para detalhes
-    filmeGrid.querySelectorAll('.filme-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const id = card.getAttribute('data-id');
-        window.location.href = `detalhes.html?id=${id}`;
+      filmeGrid.querySelectorAll('.filme-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.getAttribute('data-id');
+          window.location.href = `detalhe.html?id=${id}`;
+        });
       });
+
+    } catch (error) {
+      if (filmeGrid) filmeGrid.innerHTML = '<p>Erro ao buscar resultados.</p>';
+      console.error('Erro na pesquisa:', error);
+    }
+  }
+
+  // ✅ SUBMISSÃO DO FORMULÁRIO (busca manual)
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput.value.trim();
+      if (!query) {
+        alert('Digite um termo para pesquisar.');
+        return;
+      }
+      window.location.href = `pesquisa.html?query=${encodeURIComponent(query)}`;
     });
-  });
+  }
+
+  // ✅ BUSCA AUTOMÁTICA SE TIVER ?query= NA URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlQuery = urlParams.get('query');
+  if (urlQuery) {
+    if (searchInput) searchInput.value = urlQuery; // preencher campo
+    executarBusca(urlQuery);
+  }
 });

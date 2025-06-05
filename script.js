@@ -3,7 +3,12 @@ const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&langu
 const urlLancamentos = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=pt-BR&page=1`;
 
 const itemPerSlide = 5;
-const carouselContent = document.getElementById('carouselContent');
+
+function pegarImagemDoFilme(filme) {
+  const baseUrl = 'https://image.tmdb.org/t/p/w300';
+  const placeholder = 'https://via.placeholder.com/300x160?text=Sem+Imagem';
+  return filme && filme.poster_path ? baseUrl + filme.poster_path : placeholder;
+}
 
 async function buscarFilmes(url) {
   const resposta = await fetch(url);
@@ -11,18 +16,10 @@ async function buscarFilmes(url) {
   return dados.results;
 }
 
-function pegarImagemDoFilme(filme) {
-  const baseUrl = 'https://image.tmdb.org/t/p/w300';
-  const placeholder = 'https://via.placeholder.com/300x160?text=Sem+Imagem';
-
-  if (filme && filme.poster_path) {
-    return baseUrl + filme.poster_path;
-  } else {
-    return placeholder;
-  }
-}
-
 function criarSlide(filmes) {
+  const carouselContent = document.getElementById('carouselContent');
+  if (!carouselContent) return; // segurança
+
   carouselContent.innerHTML = '';
 
   for (let i = 0; i < filmes.length; i += itemPerSlide) {
@@ -57,6 +54,8 @@ function criarSlide(filmes) {
 
 function criarCardsLancamentos(filmes) {
   const container = document.getElementById('ultimosLancamentos');
+  if (!container) return; // segurança
+
   container.innerHTML = '';
 
   filmes.forEach(filme => {
@@ -89,54 +88,13 @@ async function mostrarLancamentos() {
     criarCardsLancamentos(dados.results);
   } catch (error) {
     console.error('Erro ao buscar lançamentos:', error);
-    document.getElementById('ultimosLancamentos').innerHTML = '<p class="text-warning">Erro ao carregar lançamentos.</p>';
+    const container = document.getElementById('ultimosLancamentos');
+    if (container) {
+      container.innerHTML = '<p class="text-warning">Erro ao carregar lançamentos.</p>';
+    }
   }
 }
 
-// Inicia funções ao carregar a página
-window.addEventListener('load', () => {
-  buscarFilmes(url).then(criarSlide).catch(console.error);
-  mostrarLancamentos();
-});
-
-
-
-
-// Exemplo de uso:
-buscarFilmes(url).then(criarSlide);
-
-
-
-
-
-// INICIALIZA
-buscarFilmes(url)
-  .then(criarSlide)
-  .catch(error => console.error('Erro ao buscar animes:', error));
-
-
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data.results);
-  })
-  .catch(error => console.error('Erro ao buscar Filmes:', error));
-
-
-// parte autor
-
-//link do Instagram dinamicamente
-const redes = document.getElementById('redesSociaisAluno');
-const instagramUrl = 'https://instagram.com/heberth_sousa';
-
-redes.innerHTML = `
-  <a href="${instagramUrl}" target="_blank" rel="noopener noreferrer" class="text-white me-3" style="font-size: 1.5rem;">
-    <i class="fab fa-instagram"></i>
-  </a>
-`;
-
-
-// Agrupar avaliações por ano a partir da API TMDB
 async function gerarGraficoNotasPorAno() {
   try {
     const filmes = await buscarFilmes(url);
@@ -158,9 +116,10 @@ async function gerarGraficoNotasPorAno() {
     const anos = Object.keys(notasPorAno).sort();
     const medias = anos.map(ano => (notasPorAno[ano].soma / notasPorAno[ano].total).toFixed(2));
 
-    // Criar gráfico
-    const ctx = document.getElementById('graficoNotas').getContext('2d');
-    new Chart(ctx, {
+    const ctx = document.getElementById('graficoNotas');
+    if (!ctx) return;
+
+    new Chart(ctx.getContext('2d'), {
       type: 'bar',
       data: {
         labels: anos,
@@ -187,7 +146,31 @@ async function gerarGraficoNotasPorAno() {
   }
 }
 
-// Chamar função após carregar a página
 window.addEventListener('load', () => {
+  buscarFilmes(url).then(criarSlide).catch(console.error);
+  mostrarLancamentos();
   gerarGraficoNotasPorAno();
+
+  const redes = document.getElementById('redesSociaisAluno');
+  if (redes) {
+    const instagramUrl = 'https://instagram.com/heberth_sousa';
+    redes.innerHTML = `
+      <a href="${instagramUrl}" target="_blank" rel="noopener noreferrer" class="text-white me-3" style="font-size: 1.5rem;">
+        <i class="fab fa-instagram"></i>
+      </a>
+    `;
+  }
+
+  const searchForm = document.getElementById('searchFormMain');
+  const searchInput = document.getElementById('searchInputMain');
+
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const termo = searchInput.value.trim();
+      if (termo) {
+        window.location.href = `pesquisa.html?query=${encodeURIComponent(termo)}`;
+      }
+    });
+  }
 });
